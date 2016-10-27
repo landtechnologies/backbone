@@ -661,6 +661,10 @@
       return singular ? models[0] : models;
     },
 
+    modelId: function() {
+      return this.model.prototype.idAttribute;
+    },
+
     // Update a collection by `set`-ing a new list of models, adding new ones,
     // removing models that are no longer present, and merging models that
     // already exist in the collection, as necessary. Similar to **Model#set**,
@@ -686,7 +690,7 @@
         if (attrs instanceof Model) {
           id = model = attrs;
         } else {
-          id = attrs[targetModel.prototype.idAttribute || 'id'];
+          id = attrs[this.modelId() || 'id'];
         }
 
         // If a duplicate is found, prevent it from being added and
